@@ -6,7 +6,7 @@ ofile = open('ttest.csv', "wb",)
 writer = csv.writer(ofile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL,lineterminator='\n')
 for i in range(1,6):
     books = []
-    req = requests.get("https://www.indiabookstore.net/categories/wordPowerAndGrammar?page="+str(i))
+    req = requests.get("https://www.indiabookstore.net/categories/romance?page="+str(i))
     soup = BeautifulSoup(req.text,"html.parser")
     for book in soup.find_all("a",{'class':'bookPageLink'}):
         book_link = book.get("href")
@@ -39,7 +39,7 @@ for i in range(1,6):
             book.append(bookTitle)
             book.append(authorName)
             book.append(bookDescription.encode('ascii','ignore'))
-            book.append("Grammar")
+            book.append("Romance")
             book.append(str(book_link).replace("/isbn/",""))
             books.append(book)
     print books
